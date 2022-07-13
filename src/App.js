@@ -1,20 +1,22 @@
-import './App.css';
-import AddUsers from './components/AddUsers';
-import UsersList from './components/UsersList';
 import React, {useState} from 'react';
+import AddUsers from './components/AddUsers/AddUsers';
+import List from './components/List/List';
+import Header from './components/Header/Header';
+import Notify from './components/Notify/Notify';
 
 function App() {
     const [list, setList] = useState([])
-    const addNewItem = item => {
-        setList([...list, item]);
-        console.log({item, list})
-    };
+    const addNewItem = item => setList([...list, item]);
 
     return (
         <div className="App">
-            <header className="App-header">Hangover calculator</header>
-            <AddUsers className='App-form' addNewItem={addNewItem}/>
-            <UsersList list={list}/>
+            <Header/>
+            <div className="wrap">
+                <AddUsers className='add_form' addNewItem={addNewItem}/>
+                {/*<MainPage/>*/}
+                <List list={list}/>
+                <Notify/>
+            </div>
         </div>
     );
 }

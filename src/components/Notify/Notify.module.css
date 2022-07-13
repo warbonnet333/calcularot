@@ -1,0 +1,35 @@
+.container{
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 199;
+  display: none;
+}
+
+.inner{
+  width: 90%;
+  padding: 10vw 5vw;
+  background-color: var(--main-color);
+  color: #ffffff;
+  font-size: 4vw;
+  line-height: 1.2;
+  border-radius: 4vw;
+  text-align: center;
+  flex-flow: column;
+  max-height: 80vh;
+  overflow: auto;
+  max-width: 600px;
+}
+
+@media only screen and (min-width: 400px){
+  .inner{
+    padding: 40px 20px;
+    font-size: 16px;
+    border-radius: 16px;
+  }
+}
