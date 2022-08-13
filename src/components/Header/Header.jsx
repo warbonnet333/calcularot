@@ -13,7 +13,6 @@ class Header extends Component {
   render() {
     // const { pathname } = this.props.location
     return <header>
-      {/*{pathname !== '/' && <span to="/" className={st.back_link}><img src={back_arr} alt="Назад" /></span>}*/}
       <span className={st.logo}>Hangover calculator</span>
       <button onClick={this.askBtn} className={st.ask_btn}><img src={ask_btn} alt="?" /></button>
     </header>

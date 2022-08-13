@@ -31,6 +31,7 @@
       font-size: 28px;
       display: flex;
       justify-content: space-between;
+      padding-right: 35px;
 
       &_spent {
         font-size: 20px;
@@ -68,6 +69,102 @@
         }
       }
     }
+
+    &--debt {
+      padding: 12px 0 6px;
+      border-top: 1px solid #fff;
+      margin-top: 6px;
+
+      &_item {
+        margin-bottom: 13px;
+
+        .debt-money {
+          font-size: 18px;
+          font-weight: bold;
+          margin-bottom: 10px;
+        }
+
+        &:last-of-type {
+          margin-bottom: 0;
+        }
+      }
+
+      ul {
+        list-style-type: none;
+        display: flex;
+        align-items: center;
+        flex-flow: row wrap;
+        grid-gap: 10px;
+
+        li {
+
+
+        }
+      }
+    }
+  }
+
+  .spent-form {
+    padding: 20px 0 0;
+
+    &__top {
+      display: flex;
+      align-items: center;
+      margin-bottom: 12px;
+
+      &-error {
+        color: red;
+        margin-bottom: 12px;
+      }
+    }
+
+
+    input {
+      border: none;
+      color: #000000;
+      line-height: 1.2;
+      width: 100%;
+      outline: none;
+      border-radius: 12px;
+      font-size: 20px;
+      padding: 10px;
+      flex: 1;
+
+      &::placeholder {
+        opacity: 0.5;
+      }
+    }
+
+    &__btn {
+      width: 44px;
+      height: 44px;
+      background-image: url("../../../src/images/icon_plus--green.svg");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 80%;
+      border: none;
+      border-radius: 12px;
+      margin-left: 12px;
+      cursor: pointer;
+      background-color: transparent;
+    }
+
+    &__members {
+      display: flex;
+      flex-flow: row wrap;
+      grid-gap: 6px;
+
+      &-item {
+        background-color: var(--main-color);
+        border-radius: 6px;
+        padding: 6px 9px;
+        opacity: 0.5;
+
+        &.active {
+          opacity: 1;
+        }
+      }
+    }
   }
 }
 
@@ -95,6 +192,7 @@
   bottom: 0;
   right: 0;
 }
+
 
 @media only screen and (min-width: 400px) {
   .container {
