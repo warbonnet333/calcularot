@@ -1,5 +1,6 @@
 import React, {Component, PureComponent} from 'react';
 import st from "./AddUsers.module.css";
+import {Button} from "@mui/material";
 
 const initialItem = {
     name: '',
@@ -52,7 +53,13 @@ class AddUsers extends PureComponent {
                     <input className={st.email_form_small_input} name='name' required type='text'
                            placeholder="name" value={name} onChange={this.onItemChange}/>
                 </div>
-                <button disabled={disabled} type='submit' className={st.find_bnt}>+</button>
+                <Button
+                    disabled={disabled}
+                    color='gray'
+                    variant="contained"
+                    fullWidth={true}
+                    type='submit'
+                >+</Button>
             </form>
         )
     }
