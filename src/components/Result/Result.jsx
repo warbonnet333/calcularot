@@ -1,7 +1,7 @@
 import React from "react";
 import { v4 as uuid } from "uuid";
 
-const Result = ({ list }) =>
+const Result = ({ list, onCalculate }) =>
   list.length ? (
     <div className="wrapper result-wrapper">
       <div className="d-space result-title">
@@ -10,6 +10,11 @@ const Result = ({ list }) =>
           <span className="in-come">Get</span>
           <span className="out-come">Give</span>
         </p>
+        {list.length > 1 && (
+          <button className="calculate-brn" onClick={onCalculate}>
+            Calculate
+          </button>
+        )}
       </div>
       <ul className="list result-list">
         {list.map((item) => (

@@ -158,12 +158,11 @@ function App() {
               list={list}
               className="add_form"
               addNewItem={addNewItem}
-              onCalculate={calculateResults}
             />
             <List list={list} updateItem={updateItem} />
           </div>
           <div className="d-six">
-            <Result list={list} />
+            <Result list={list} onCalculate={calculateResults} />
           </div>
         </div>
       </div>

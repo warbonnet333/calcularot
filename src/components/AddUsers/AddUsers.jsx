@@ -41,7 +41,6 @@ class AddUsers extends PureComponent {
 
   render() {
     const { name, disabled } = this.state;
-    const { list, onCalculate } = this.props;
 
     return (
       <div className="wrapper d-flex add-form">
@@ -65,7 +64,6 @@ class AddUsers extends PureComponent {
             Add person
           </button>
         </form>
-        {list.length > 1 && <button onClick={onCalculate}>Calculate</button>}
       </div>
     );
   }

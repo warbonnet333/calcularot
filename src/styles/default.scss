@@ -27,7 +27,7 @@ input::-webkit-inner-spin-button {
 button {
   padding: 3px 6px;
   margin: 5px;
-  // margin-left: auto;
+  cursor: pointer;
 }
 
 input {
@@ -137,6 +137,15 @@ ul {
       opacity: 1;
     }
   }
+}
+
+.calculate-brn {
+  background: green;
+  color: #fff;
+  border: 2px solid green;
+  outline: none;
+  margin-left: 0;
+  border-radius: 2px;
 }
 
 @media only screen and (min-width: 768px) {

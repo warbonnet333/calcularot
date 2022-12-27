@@ -3,7 +3,7 @@ import Person from "../Person/Person";
 import { v4 as uuid } from "uuid";
 import { memo } from "react";
 
-const List = ({ list, updateItem, onCalculate }) => {
+const List = ({ list, updateItem }) => {
   return (
     !!list.length && (
       <ol className="list wrapper main-list">
