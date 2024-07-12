@@ -1,15 +1,17 @@
-import React, { useState } from "react";
-import AddUsers from "./components/AddUsers/AddUsers";
-import List from "./components/List/List";
-import Result from "./components/Result/Result";
+import React, {useState} from 'react';
+import AddUsers from './components/AddUsers/AddUsers';
+import List from './components/List/List';
+import Result from './components/Result/Result';
+import {checkABS} from './helpers/functions';
 
 function App() {
   const [list, setList] = useState([]);
   const addNewItem = (item) => setList([...list, item]);
+
   const updateItem = (newItem) => {
     const newList = [...list];
     const itemToEditInd = newList.findIndex(
-      (item) => item.name === newItem.name
+        (item) => item.name === newItem.name
     );
     let debt = { ...newList[itemToEditInd].debt };
     const members = [...newItem.members];
@@ -54,18 +56,6 @@ function App() {
     setList(newList);
   };
 
-  // check if user has only '+' or '-' or has both;
-  const checkABS = (obj) => {
-    const regSum = Math.abs(
-      Object.values(obj).reduce((acc, item) => acc + item, 0)
-    );
-    const absSum = Object.values(obj).reduce(
-      (acc, item) => acc + Math.abs(item),
-      0
-    );
-    return { regSum, absSum };
-  };
-
   const fixABS = ({ name, debt }) => {
     let upZero = {};
     let downZero = {};
@@ -83,7 +73,8 @@ function App() {
     const loopLength = [
       Object.keys(upZero).length,
       Object.keys(downZero).length,
-    ].sort()[0];
+    ].sort((a, b) => a - b)[0];
+
     const user = list.find((item) => item.name === name);
 
     for (let i = 0; i < loopLength; i++) {
@@ -137,7 +128,8 @@ function App() {
 
   const calculateResults = () => {
     for (let i = 0; i < list.length; i++) {
-      const { regSum, absSum } = checkABS(list[i].debt);
+      const numbersToCheck = Object.values(list[i].debt);
+      const {regSum, absSum} = checkABS(numbersToCheck);
 
       if (regSum !== absSum) {
         fixABS(list[i]);

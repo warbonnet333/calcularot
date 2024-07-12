@@ -17,11 +17,11 @@ const Person = ({ data, items = [], updateItem }) => {
   const onSpentSubmit = (e) => {
     e.preventDefault();
     if (!spent) {
-      setError("Enter the amount spent");
+      setError("Write how much you spent");
       return;
     }
     if (!members.length) {
-      setError("Choose someone");
+      setError("Choose to whom this amount will be divided");
       return;
     }
     if (members.length === 1 && members[0] === data.name) {
@@ -36,7 +36,7 @@ const Person = ({ data, items = [], updateItem }) => {
     });
     setError(null);
     setEditable(false);
-    setSpentChange(0);
+    setSpentChange('');
     setSpentMembers([]);
   };
 
