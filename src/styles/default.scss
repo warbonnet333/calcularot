@@ -60,7 +60,7 @@ input {
 }
 
 .wrapper {
-  border: 2px solid #000;
+  border: 1px solid #000;
   border-radius: 5px;
   margin: 10px;
   padding: 10px;
@@ -115,15 +115,25 @@ ul {
 }
 
 .result {
+  &-list {
+    li ul {
+      li {
+        margin-top: 10px;
+      }
+    }
+
+    & > li + li {
+      margin-top: 15px;
+      padding-top: 15px;
+      border-top: 1px solid lightgray;
+    }
+  }
+
   &-title {
     margin-bottom: 10px;
     align-items: center;
 
     button {
-      margin: 0;
-    }
-
-    span {
       margin: 0 5px;
     }
   }
@@ -137,9 +147,13 @@ ul {
   &--item {
     cursor: pointer;
     opacity: 0.5;
+    padding: 5px 7px;
+    border-radius: 5px;
 
     &.active {
       opacity: 1;
+      background: lightgreen;
+      color: black;
     }
   }
 }
@@ -157,8 +171,6 @@ ul {
   .wrap {
     display: flex;
     flex-wrap: wrap;
-    // grid-gap: 10px;
-    // padding: 10px;
   }
 
   .d-six {
