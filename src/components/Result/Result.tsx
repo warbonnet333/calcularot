@@ -8,7 +8,7 @@ type ResultProps = {
     allowEditing: boolean;
 };
 
-const Result = ({list, onCalculate}: ResultProps): React.JSX.Element | null => {
+const Result = ({ list, onCalculate }: ResultProps): React.JSX.Element | null => {
     const [shownType, setShownType] = useState<string>('all'); // all, in-come, out-come
     const getResultList = (list: TUser[] = []): TUser[] => {
         if (shownType === 'in-come') {
@@ -26,11 +26,11 @@ const Result = ({list, onCalculate}: ResultProps): React.JSX.Element | null => {
         <div className="wrapper result-wrapper">
             <div className="d-space result-title">
                 <h3>Results</h3>
-                <p>
-                    <button onClick={() => setShownType('all')}>All</button>
-                    <button className="in-come" onClick={() => setShownType('in-come')}>Income</button>
-                    <button className="out-come" onClick={() => setShownType('out-come')}>Outcome</button>
-                </p>
+                <div className='result-buttons'>
+                    <button className={shownType === 'all' ? 'active' : ''} onClick={() => setShownType('all')}>All</button>
+                    <button className={shownType === 'in-come' ? 'in-come active' : 'in-come'} onClick={() => setShownType('in-come')}>Income</button>
+                    <button className={shownType === 'out-come' ? 'out-come active' : 'out-come'} onClick={() => setShownType('out-come')}>Outcome</button>
+                </div>
                 {list.length > 1 && (
                     <button className="calculate-brn" onClick={onCalculate}>
                         Calculate
