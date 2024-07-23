@@ -10,9 +10,6 @@ type ResultProps = {
 
 const Result = ({list, onCalculate}: ResultProps): React.JSX.Element | null => {
     const [shownType, setShownType] = useState<string>('all'); // all, in-come, out-come
-
-    console.log('list', list);
-
     const getResultList = (list: TUser[] = []): TUser[] => {
         if (shownType === 'in-come') {
             return list.filter((item: TUser) => Object.values(item.debt)[0] > 0);
