@@ -54,6 +54,12 @@
     outline: none;
     margin-left: 0;
     border-radius: 2px;
+
+    &.disabled {
+        background: lightgray;
+        border-color: lightgray;
+        cursor: not-allowed;
+    }
 }
 
 .person-list {

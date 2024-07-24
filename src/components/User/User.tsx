@@ -1,12 +1,13 @@
 import React, {ChangeEvent, FormEvent, useState} from 'react';
 import {memo} from 'react';
-import {TUser} from '../../types';
+import {TTransaction, TUser} from '../../types';
 import {v4 as uuid} from "uuid";
 
 type UserProps = {
-    data: TUser;
-    users?: TUser[];
-    updateUser: (user: TUser) => void;
+    user: TUser;
+    allUsers?: TUser[];
+    addTransaction: (transaction: TTransaction) => void;
+    removeTransaction: (id: string) => void;
     allowEditing: boolean;
 };
 
@@ -16,11 +17,11 @@ const ERRORS = {
     NOT_ONLY_YOU: 'Choose someone else besides yourself'
 }
 
-function User({data, users = [], updateUser, allowEditing}: UserProps) {
+function User({user, allUsers = [], addTransaction, removeTransaction, allowEditing}: UserProps) {
     const [isEditable, setEditable] = useState(false);
     const [error, setError] = useState<string | null>(null);
     const [spent, setSpentChange] = useState('');
-    const [members, setSpentMembers] = useState([data.name]);
+    const [members, setSpentMembers] = useState([user.name]);
     const onEditClick = (): void => {
         setEditable(!isEditable);
     };
@@ -39,7 +40,7 @@ function User({data, users = [], updateUser, allowEditing}: UserProps) {
             return true;
         }
 
-        if (members.length === 1 && members[0] === data.name) {
+        if (members.length === 1 && members[0] === user.name) {
             setError(ERRORS.NOT_ONLY_YOU);
             return true;
         }
@@ -54,11 +55,13 @@ function User({data, users = [], updateUser, allowEditing}: UserProps) {
             return;
         }
 
-        updateUser({
-            ...data,
-            spent: +spent,
-            members,
-        });
+        const transaction: TTransaction = {
+            id: user.id + uuid(),
+            money: +spent,
+            dividedFor: members,
+        };
+
+        addTransaction(transaction);
 
         setError(null);
         setEditable(false);
@@ -81,7 +84,7 @@ function User({data, users = [], updateUser, allowEditing}: UserProps) {
     return (
         <li className="list_item wrapper">
             <div className="d-flex f-space">
-                <div className="list_item--top">{data.name}</div>
+                <div className="list_item--top">{user.name}</div>
                 <button className="edit_btn" disabled={!allowEditing} onClick={onEditClick}>
                     {isEditable ? 'Close' : 'Edit'}
                 </button>
@@ -103,7 +106,7 @@ function User({data, users = [], updateUser, allowEditing}: UserProps) {
 
                 <div className="person-list d-flex">
                     <p>Divide for:</p>
-                    {users?.length ? users.map((item: TUser, i: number) => (
+                    {allUsers?.length ? allUsers.map((item: TUser, i: number) => (
                         <div
                             key={uuid() + i}
                             onClick={() => onMemberToggle(item.name)}
@@ -115,13 +118,15 @@ function User({data, users = [], updateUser, allowEditing}: UserProps) {
                 </div>
             </form>}
 
-            {data.transactions.length ? <div className="list_item--debt wrapper">
-                {data.transactions.map((transaction, i: number) => (
+            {user.transactions.length ? <div className="list_item--debt wrapper">
+                {user.transactions.map((transaction, i: number) => (
                     <div className="list_item--debt_item" key={transaction.id + i}>
                         <div className="debt-money">{transaction.money}</div>
                         <div className="debt-list">
                             {transaction.dividedFor.join(', ')}
                         </div>
+
+                        {allowEditing && <button className='remove-transaction' onClick={() => removeTransaction(transaction.id)}/>}
                     </div>
                 ))}
             </div> : null}

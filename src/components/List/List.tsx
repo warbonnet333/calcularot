@@ -1,25 +1,27 @@
 import React, {ReactElement} from "react";
 import User from "../User/User";
 import {memo} from "react";
-import {TUser} from "../../types";
+import {TTransaction, TUser} from "../../types";
 import {v4 as uuid} from "uuid";
 
 type ListProps = {
     list: TUser[];
-    updateUser: (user: TUser) => void;
+    addTransaction: (userId:string, transaction: TTransaction) => void;
+    removeTransaction: (userId:string, transactionId: string) => void;
     allowEditing: boolean;
 };
 
-function List({list, updateUser, allowEditing}: ListProps): ReactElement | null {
+function List({list, addTransaction, removeTransaction, allowEditing}: ListProps): ReactElement | null {
     return (
         !!list.length ?
             <ol className="list wrapper main-list">
-                {list.map((item: TUser) => (
+                {list.map((user: TUser) => (
                     <User
-                        key={item.id + uuid()}
-                        data={item}
-                        users={list}
-                        updateUser={updateUser}
+                        key={user.id + uuid()}
+                        user={user}
+                        allUsers={list}
+                        addTransaction={(transaction:TTransaction) => addTransaction(user.id, transaction)}
+                        removeTransaction={(transactionId:string) => removeTransaction(user.id, transactionId)}
                         allowEditing={allowEditing}
                     />
                 ))}
