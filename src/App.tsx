@@ -106,6 +106,8 @@ function App() {
             setAllowEditing(false);
             calculateDebts();
         }
+
+        // eslint-disable-next-line
     }, [allowEditing, list]);
 
     const onRemoveTransaction = (userId: string, transactionId: string): void => {
